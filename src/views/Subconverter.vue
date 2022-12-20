@@ -44,7 +44,7 @@
                   <el-autocomplete style="width: 100%"
                     v-model="form.customBackend"
                     :fetch-suggestions="backendSearch"
-                    placeholder="动动小手，（建议）自行搭建后端服务。例：http://127.0.0.1:25500/sub?">
+                    placeholder="动动小手，（建议）自行搭建后端服务。">
                     <el-button slot="append"
                       @click="gotoGayhub"
                       icon="el-icon-link">前往项目仓库</el-button>
@@ -309,7 +309,41 @@ export default {
           ClashR: 'clashr',
           Surge2: 'surge&ver=2',
         },
-        backendOptions: [{ value: 'http://127.0.0.1:25500/sub?' }],
+        backendOptions: [
+          {
+            value: 'http://127.0.0.1:25500/sub?',
+          },
+          {
+            value: 'https://api.565869.xyz/sub?',
+          },
+          {
+            value: 'https://api.v1.mk/sub?',
+          },
+          {
+            value: 'https://sub.d1.mk/sub?',
+          },
+          {
+            value: 'https://api.tsutsu.one/sub?',
+          },
+          {
+            value: 'https://v.id9.cc/sub?',
+          },
+          {
+            value: 'https://www.nameless13.com/sub?',
+          },
+          {
+            value: 'https://sub.xeton.dev/sub?',
+          },
+          {
+            value: 'https://api.wcc.best/sub?',
+          },
+          {
+            value: 'https://api.dler.io/sub?',
+          },
+          {
+            value: 'https://sub.maoxiongnet.com/sub?',
+          },
+        ],
         remoteConfig: [
           {
             label: '通用',
@@ -804,7 +838,7 @@ export default {
             label: '特殊',
             options: [
               {
-                label: 'NeteaseUnblock(仅规则，No-Urltest)',
+                label: '解锁网易云(仅规则，No-Urltest)',
                 value:
                   'https://cdn.jsdelivr.net/gh/SleepyHeeead/subconverter-config@master/remote-config/special/netease.ini',
               },
