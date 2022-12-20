@@ -294,20 +294,20 @@ export default {
 
       options: {
         clientTypes: {
-          Clash: 'clash',
-          Surge3: 'surge&ver=3',
-          Surge4: 'surge&ver=4',
-          Quantumult: 'quan',
           QuantumultX: 'quanx',
-          Surfboard: 'surfboard',
-          Loon: 'loon',
-          SSAndroid: 'sssub',
+          Clash: 'clash',
+          ClashR: 'clashr',
           V2Ray: 'v2ray',
+          Loon: 'loon',
+          Quantumult: 'quan',
           ss: 'ss',
           ssr: 'ssr',
           ssd: 'ssd',
-          ClashR: 'clashr',
+          SSAndroid: 'sssub',
           Surge2: 'surge&ver=2',
+          Surge3: 'surge&ver=3',
+          Surge4: 'surge&ver=4',
+          Surfboard: 'surfboard',
         },
         backendOptions: [
           {
@@ -898,7 +898,7 @@ export default {
     }
   },
   created() {
-    document.title = 'Subscription Converter'
+    document.title = '订阅转换'
     this.isPC = this.$getOS().isPc
 
     // 获取 url cache
