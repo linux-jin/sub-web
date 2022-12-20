@@ -41,14 +41,24 @@
 
               <div v-if="advanced === '2'">
                 <el-form-item label="后端地址:">
-                  <el-autocomplete style="width: 100%"
+                  <!-- <el-autocomplete style="width: 100%"
                     v-model="form.customBackend"
                     :fetch-suggestions="backendSearch"
                     placeholder="动动小手，（建议）自行搭建后端服务。">
                     <el-button slot="append"
                       @click="gotoGayhub"
                       icon="el-icon-link">前往项目仓库</el-button>
-                  </el-autocomplete>
+                  </el-autocomplete> -->
+                  <el-select
+                    v-model="form.customBackend"
+                    allow-create
+                    filterable
+                    @change="selectChanged"
+                    placeholder="可输入自己的后端"
+                    style="width: 100%"
+                  >
+                    <el-option v-for="(v, k) in options.customBackend" :key="k" :label="k" :value="v"></el-option>
+                  </el-select>
                 </el-form-item>
                 <el-form-item label="远程配置:">
                   <el-select v-model="form.remoteConfig"
@@ -308,6 +318,20 @@ export default {
           Surge3: 'surge&ver=3',
           Surge4: 'surge&ver=4',
           Surfboard: 'surfboard',
+        },
+        customBackend: {
+          '本地局域网版后端': 'http://127.0.0.1:25500/sub?',
+          '雾山提供后端': 'https://api.565869.xyz/sub?',
+          '肥羊增强型后端【vless+负载均衡】': 'https://api.v1.mk/sub?',
+          '肥羊备用后端【vless+负载均衡】': 'https://sub.d1.mk/sub?',
+          'つつ-多地防失联【负载均衡+国内优化】':
+            'https://api.tsutsu.one/sub?',
+          '品云提供后端【实验性】': 'https://v.id9.cc/sub?',
+          'nameless13提供': 'https://www.nameless13.com/sub?',
+          'subconverter作者提供': 'https://sub.xeton.dev/sub?',
+          'sub-web作者提供': 'https://api.wcc.best/sub?',
+          'sub作者&lhie1提供': 'https://api.dler.io/sub?',
+          "sub.maoxiongnet.com(猫熊提供-稳定)":"https://sub.maoxiongnet.com/sub?",
         },
         backendOptions: [
           {
@@ -907,21 +931,7 @@ export default {
     }
   },
   mounted() {
-    this.form.clientType = 'clash'
-    this.form.customBackend = {
-      '本地局域网版后端': 'http://127.0.0.1:25500/sub?',
-      '雾山提供后端': 'https://api.565869.xyz/sub?',
-      '肥羊增强型后端【vless+负载均衡】': 'https://api.v1.mk/sub?',
-      '肥羊备用后端【vless+负载均衡】': 'https://sub.d1.mk/sub?',
-      'つつ-多地防失联【负载均衡+国内优化】':
-        'https://api.tsutsu.one/sub?',
-      '品云提供后端【实验性】': 'https://v.id9.cc/sub?',
-      'nameless13提供': 'https://www.nameless13.com/sub?',
-      'subconverter作者提供': 'https://sub.xeton.dev/sub?',
-      'sub-web作者提供': 'https://api.wcc.best/sub?',
-      'sub作者&lhie1提供': 'https://api.dler.io/sub?',
-      "sub.maoxiongnet.com(猫熊提供-稳定)":"https://sub.maoxiongnet.com/sub?",
-    }
+    this.form.clientType = 'quanx'
     this.notify()
     this.getBackendVersion()
   },
@@ -1227,14 +1237,31 @@ export default {
     },
     getBackendVersion() {
       this.$axios
-        .get(
-          defaultBackend.substring(0, defaultBackend.length - 5) + '/version'
-        )
-        .then(res => {
-          this.backendVersion = res.data.replace(/backend\n$/gm, '')
-          this.backendVersion = this.backendVersion.replace('subconverter', '')
-        })
+          .get(
+              this.form.customBackend.substring(0, this.form.customBackend.length - 5) + "/version"
+          )
+          .then(res => {
+            this.backendVersion = res.data.replace(/backend\n$/gm, "");
+            this.backendVersion = this.backendVersion.replace("subconverter", "SubConverter");
+            let a = this.form.customBackend.indexOf("api.v1.mk") !== -1 || this.form.customBackend.indexOf("sub.d1.mk") !== -1;
+            let b = this.form.customBackend.indexOf("v.id9.cc") !== -1;
+            let c = this.form.customBackend.indexOf("127.0.0.1") !== -1;
+            a ? this.$message.success(`${this.backendVersion}` + "肥羊负载均衡加强后端支持vless+trojan xtls订阅转换") : b ? this.$message.success(`${this.backendVersion}` + "品云实验性后端支持vless+trojan xtls订阅转换") : c ? this.$message.success(`${this.backendVersion}` + "本地局域网自建版后端") : this.$message.success(`${this.backendVersion}` + "官方原版后端不支持vless/trojan xtls订阅转换");
+          })
+          .catch(() => {
+            this.$message.error("请求SubConverter版本号返回数据失败，该后端不可用！");
+          });
     },
+    // getBackendVersion() {
+    //   this.$axios
+    //     .get(
+    //       defaultBackend.substring(0, defaultBackend.length - 5) + '/version'
+    //     )
+    //     .then(res => {
+    //       this.backendVersion = res.data.replace(/backend\n$/gm, '')
+    //       this.backendVersion = this.backendVersion.replace('subconverter', '')
+    //     })
+    // },
     saveSubUrl() {
       if (this.form.sourceSubUrl !== '') {
         this.setLocalStorageItem('sourceSubUrl', this.form.sourceSubUrl)
