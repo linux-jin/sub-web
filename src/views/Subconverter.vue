@@ -313,6 +313,7 @@ export default {
           Surfboard: 'surfboard',
         },
         customBackend: {
+          '本地局域网版后端': 'http://127.0.0.1:25500/sub?',
           '雾山提供后端': 'https://api.565869.xyz/sub?',
           '雾山提供后端（备用）':'https://subconverter.mistyhill.ml/sub?',
           '肥羊增强型后端【vless+负载均衡】': 'https://api.v1.mk/sub?',
@@ -324,7 +325,6 @@ export default {
           'sub-web作者提供': 'https://api.wcc.best/sub?',
           'sub作者&lhie1提供': 'https://api.dler.io/sub?',
           'sub.maoxiongnet.com(猫熊提供-稳定)': 'https://sub.maoxiongnet.com/sub?',
-          '本地局域网版后端': 'http://127.0.0.1:25500/sub?',
         },
         backendOptions: [
           {
@@ -332,6 +332,9 @@ export default {
           },
           {
             value: 'https://api.565869.xyz/sub?',
+          },
+          {
+            value: 'https://subconverter.mistyhill.ml/sub?',
           },
           {
             value: 'https://api.v1.mk/sub?',
