@@ -1117,6 +1117,7 @@ export default {
             '&config=' + encodeURIComponent(this.form.remoteConfig)
         }
         if (this.form.excludeRemarks !== '') {
+<<<<<<< HEAD
           this.customSubUrl +=
             '&exclude=' + encodeURIComponent(this.form.excludeRemarks)
         }
@@ -1126,6 +1127,17 @@ export default {
         }
         if (this.form.filename !== '') {
           this.customSubUrl +=
+=======
+          this.customSubUrl +=
+            '&exclude=' + encodeURIComponent(this.form.excludeRemarks)
+        }
+        if (this.form.includeRemarks !== '') {
+          this.customSubUrl +=
+            '&include=' + encodeURIComponent(this.form.includeRemarks)
+        }
+        if (this.form.filename !== '') {
+          this.customSubUrl +=
+>>>>>>> 4d33471c1d53874c7ff80ec21ab3cf678fa1ee66
             '&filename=' + encodeURIComponent(this.form.filename)
         }
         if (this.form.appendType) {
@@ -1201,6 +1213,7 @@ export default {
     },
     notify() {
       const h = this.$createElement
+<<<<<<< HEAD
 
       this.$notify({
         title: '隐私提示',
@@ -1224,6 +1237,31 @@ export default {
       data.append('password', this.uploadPassword)
       data.append('config', this.uploadConfig)
 
+=======
+
+      this.$notify({
+        title: '隐私提示',
+        type: 'warning',
+        message: h(
+          'i',
+          { style: 'color: teal' },
+          '各种订阅链接（短链接服务除外）生成纯前端实现，无隐私问题。默认提供后端转换服务，隐私担忧者请自行搭建后端服务。'
+        )
+      })
+    },
+    confirmUploadConfig() {
+      if (this.uploadConfig === '') {
+        this.$message.warning('远程配置不能为空')
+        return false
+      }
+
+      this.loading = true
+
+      let data = new FormData()
+      data.append('password', this.uploadPassword)
+      data.append('config', this.uploadConfig)
+
+>>>>>>> 4d33471c1d53874c7ff80ec21ab3cf678fa1ee66
       this.$axios
         .post(configUploadBackend, data, {
           header: {
