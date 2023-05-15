@@ -898,7 +898,8 @@
           '&url=' +
           encodeURIComponent(sourceSub) +
           '&insert=' +
-          this.form.insert
+          this.form.insert +
+          '&upload=true'
 
         if (this.advanced === '2') {
           if (this.form.remoteConfig !== '') {
