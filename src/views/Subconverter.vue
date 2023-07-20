@@ -415,8 +415,7 @@ export default {
           Surfboard: 'surfboard'
         },
         customBackend: {
-          啤酒加冰增强后端: 'https://subapi.mistyhill.ml/sub?',
-          雾山提供后端: 'https://api.565869.xyz/sub?',
+          啤酒加冰增强后端: 'https://sub-api.sob.im/sub?',
           '肥羊增强型后端【vless+负载均衡】': 'https://api.v1.mk/sub?',
           '肥羊备用后端【vless+负载均衡】': 'https://sub.d1.mk/sub?',
           'つつ-多地防失联【负载均衡+国内优化】': 'https://api.tsutsu.one/sub?',
@@ -431,10 +430,7 @@ export default {
         },
         backendOptions: [
           {
-            value: 'https://subapi.mistyhill.ml/sub?'
-          },
-          {
-            value: 'https://api.565869.xyz/sub?'
+            value: 'https://sub-api.sob.im/sub?'
           },
           {
             value: 'https://api.v1.mk/sub?'
