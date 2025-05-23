@@ -232,7 +232,7 @@ export default {
           Trojan: "trojan",
           Surge3: "surge&ver=3",
         },
-        backendOptions: [{ value: "https://cup-web.666986.xyz/sub?" }, { value: "https://sub-converter.666986.xyz/api/sub?" },  { value: "https://sub-web.565869.xyz/sub?" }, { value: "https://subapi.imgki.com/sub?" }, { value: "http://127.0.0.1:25500/sub?" }],
+        backendOptions: [{ value: "https://cup-web.666986.xyz/sub?" }, {  value: "https://sub-convert.666986.xyz/sub?" }, { value: "https://sub-converter.666986.xyz/api/sub?" },  { value: "https://sub-web.565869.xyz/sub?" }, { value: "https://subapi.imgki.com/sub?" }, { value: "http://127.0.0.1:25500/sub?" }],
         remoteConfig: [
           {
             label: "ACL4SSR",
