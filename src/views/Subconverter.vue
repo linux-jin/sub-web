@@ -283,7 +283,11 @@ export default {
 			// 配置选项
 			options: {
 				clientTypes: CLIENT_TYPES,
-				backendOptions: [{ value: 'https://sub-convert.666986.xyz/sub?' }, { value: 'https://api.v1.mk/sub?' }],
+				backendOptions: [
+					{ value: 'https://sub-convert.666986.xyz/sub?' },
+					{ value: 'https://sub-converter.666986.xyz/sub?' },
+					{ value: 'https://api.asailor.org/sub?' }
+				],
 				remoteConfig: REMOTE_CONFIGS
 			},
 
