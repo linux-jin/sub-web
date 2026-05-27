@@ -284,7 +284,6 @@ export default {
 			options: {
 				clientTypes: CLIENT_TYPES,
 				backendOptions: [
-					{ value: 'https://58.211.186.6/sub?' },
 					{ value: 'https://sub-convert.666986.xyz/sub?' },
 					{ value: 'https://sub-converter.666986.xyz/sub?' },
 					{ value: 'https://api.v1.mk/sub?' }
@@ -410,12 +409,12 @@ export default {
 			this.loading = true
 
 			ShortUrlService.generateShortUrl(this.$axios, this.customSubUrl)
-				.then((shortUrl) => {
+				.then(shortUrl => {
 					this.curtomShortSubUrl = shortUrl
 					this.$copyText(shortUrl)
 					this.$message.success('短链接已复制到剪贴板')
 				})
-				.catch((error) => {
+				.catch(error => {
 					this.$message.error('短链接获取失败：' + error.message)
 				})
 				.finally(() => {
@@ -432,7 +431,7 @@ export default {
 			this.loading = true
 
 			ConfigUploadService.uploadConfig(this.$axios, this.uploadConfig)
-				.then((res) => {
+				.then(res => {
 					const result = ConfigUploadService.handleUploadSuccess(res, this.$copyText, this.$message)
 					if (result.success) {
 						// 自动填充至『表单-远程配置』
@@ -442,7 +441,7 @@ export default {
 						this.uploadConfig = ''
 					}
 				})
-				.catch((error) => {
+				.catch(error => {
 					this.$message.error('远程配置上传失败: ' + error.message)
 				})
 				.finally(() => {
@@ -482,7 +481,7 @@ export default {
 					this.loadConfig = ''
 					this.$message.success('长/短链接已成功解析为订阅信息')
 				},
-				(error) => {
+				error => {
 					this.$message.error(error)
 				}
 			)
@@ -501,7 +500,7 @@ export default {
 
 		backendSearchSuggestions(queryString, backends) {
 			if (queryString) {
-				return backends.filter((backend) => {
+				return backends.filter(backend => {
 					return backend.value.toLowerCase().indexOf(queryString.toLowerCase()) === 0
 				})
 			}
