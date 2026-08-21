@@ -1,22 +1,22 @@
+import { fileURLToPath, URL } from 'node:url'
 import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue2'
-import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
-import path from 'path'
+import vue from '@vitejs/plugin-vue'
+import ElementPlus from 'unplugin-element-plus/vite'
+
+const srcDir = fileURLToPath(new URL('./src', import.meta.url))
 
 export default defineConfig({
-    plugins: [
-        vue(),
-        createSvgIconsPlugin({
-            iconDirs: [path.resolve(process.cwd(), 'src/icons/svg')],
-            symbolId: 'icon-[name]'
-        })
-    ],
-    resolve: {
-        alias: {
-            '@': path.resolve(__dirname, 'src')
-        }
-    },
-    server: {
-        host: '0.0.0.0'
+  plugins: [
+    vue(),
+    // 按需注入组件样式，避免引入 element-plus 全量 CSS
+    ElementPlus()
+  ],
+  resolve: {
+    alias: {
+      '@': srcDir
     }
+  },
+  server: {
+    host: '0.0.0.0'
+  }
 })
